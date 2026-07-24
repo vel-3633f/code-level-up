@@ -4,10 +4,17 @@ class Light {
   }
 
   change() {
+    const light = document.getElementsByClassName("light");
     this.color = "red";
 
-    console.log(this.color);
+    const changeColor = () => {
+      light[0].style.backgroundColor = "green";
+    };
+
+    setTimeout(changeColor, 0);
+    setTimeout(changeColor, 1000);
+    setTimeout(changeColor, 2000);
   }
 }
 
-new Light("red").change();
+setInterval(new Light("red").change, 3000);
