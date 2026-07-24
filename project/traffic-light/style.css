@@ -1,9 +1,14 @@
-.traffic-light {
-  color: red;
+.crossing {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+
+.traffic-light {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 10px;
 }
 

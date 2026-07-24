@@ -5,6 +5,7 @@ class Light {
   }
 
   change() {
+    console.log(this.lightElement);
     setTimeout(() => {
       this.lightElement[0].style.backgroundColor = "green";
     }, 1000);
@@ -19,4 +20,4 @@ class Light {
   }
 }
 
-new Light("red").change();
+new Light().change();
