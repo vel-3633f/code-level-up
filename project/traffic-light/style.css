@@ -24,6 +24,16 @@ body {
   border-radius: 50%;
 }
 
+.red {
+  background-color: red;
+}
+.yellow {
+  background-color: yellow;
+}
+.green {
+  background-color: green;
+}
+
 #north {
   position: absolute;
   top: 0;
