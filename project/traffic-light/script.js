@@ -39,38 +39,35 @@ class Lights {
     });
   }
 
+  pairChange(color, num) {
+    this.lights.slice(num, num + 2).forEach((light) => {
+      light.change(color);
+    });
+  }
+
   start() {
     setTimeout(() => {
-      this.lights.slice(0, 2).forEach((light) => {
-        light.change("yellow");
-      });
+      this.pairChange("yellow", 0);
     }, 2000);
     setTimeout(() => {
-      this.lights.slice(0, 2).forEach((light) => {
-        light.change("red");
-      });
+      this.pairChange("red", 0);
     }, 4000);
     setTimeout(() => {
-      this.lights.slice(2).forEach((light) => {
-        light.change("green");
-      });
+      this.pairChange("green", 2);
     }, 4000);
     setTimeout(() => {
-      this.lights.slice(2).forEach((light) => {
-        light.change("yellow");
-      });
+      this.pairChange("yellow", 2);
     }, 6000);
     setTimeout(() => {
-      this.lights.slice(2).forEach((light) => {
-        light.change("red");
-      });
+      this.pairChange("red", 2);
     }, 8000);
     setTimeout(() => {
-      this.lights.slice(0,2).forEach((light) => {
-        light.change("green");
-      });
+      this.pairChange("green", 0);
     }, 8000);
   }
 }
 
 new Lights().start();
+setInterval(() => {
+  new Lights().start();
+}, 8000);
