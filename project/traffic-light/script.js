@@ -32,12 +32,45 @@ class Lights {
     });
 
     this.lights.slice(0, 2).forEach((light) => {
-      light.change("red");
-    });
-    this.lights.slice(2).forEach((light) => {
       light.change("green");
     });
+    this.lights.slice(2).forEach((light) => {
+      light.change("red");
+    });
+  }
+
+  start() {
+    setTimeout(() => {
+      this.lights.slice(0, 2).forEach((light) => {
+        light.change("yellow");
+      });
+    }, 2000);
+    setTimeout(() => {
+      this.lights.slice(0, 2).forEach((light) => {
+        light.change("red");
+      });
+    }, 4000);
+    setTimeout(() => {
+      this.lights.slice(2).forEach((light) => {
+        light.change("green");
+      });
+    }, 4000);
+    setTimeout(() => {
+      this.lights.slice(2).forEach((light) => {
+        light.change("yellow");
+      });
+    }, 6000);
+    setTimeout(() => {
+      this.lights.slice(2).forEach((light) => {
+        light.change("red");
+      });
+    }, 8000);
+    setTimeout(() => {
+      this.lights.slice(0,2).forEach((light) => {
+        light.change("green");
+      });
+    }, 8000);
   }
 }
 
-new Lights();
+new Lights().start();
