@@ -30,6 +30,13 @@ class Lights {
     this.lights = this.directions.map((direction) => {
       return new Light(direction);
     });
+
+    this.lights.slice(0, 2).forEach((light) => {
+      light.change("red");
+    });
+    this.lights.slice(2).forEach((light) => {
+      light.change("green");
+    });
   }
 }
 
