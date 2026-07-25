@@ -1,41 +1,43 @@
 class Light {
   constructor(color) {
     this.color = color;
-    this.lightElement = document.createElement("div");
-    this.lightElement.classList.add("light");
+    this.element = document.createElement("div");
+    this.element.classList.add("light");
   }
 
   on() {
-    this.lightElement.classList.add(this.color);
+    this.element.classList.add(this.color);
   }
   off() {
-    this.lightElement.classList.remove(this.color);
+    this.element.classList.remove(this.color);
   }
 }
 
 class Lights {
   constructor(id) {
-    this.divElement = document.createElement("div");
-    this.light = [];
+    this.container = document.createElement("div");
+    this.lights = [];
     this.colors = ["red", "yellow", "green"];
 
-    document.getElementsByClassName("crossing")[0].appendChild(this.divElement);
-    this.divElement.classList.add("traffic-light");
-    this.divElement.id = id;
+    document.getElementsByClassName("crossing")[0].appendChild(this.container);
+    this.container.classList.add("traffic-light");
+    this.container.id = id;
 
-    for (let i = 0; i < 3; i++) {
-      this.lightDivElement = document.createElement("div");
-      this.lightDivElement.classList.add("light");
-      this.light.push(this.divElement.appendChild(this.lightDivElement));
+    for (let i = 0; i < this.colors.length; i++) {
+      this.lights.push(new Light(this.colors[i]));
+      this.container.appendChild(this.lights[i].element);
     }
   }
 
   change(color) {
-    this.light.forEach((value) => {
-      value.classList.remove(...this.colors);
-    });
-
-    this.light[this.colors.indexOf(color)].classList.add(color);
+    for (let i = 0; i < this.lights.length; i++) {
+      if (this.lights[i].color === color) {
+        console.log(this.lights[i]);
+        this.lights[i].on();
+      } else {
+        this.lights[i].off();
+      }
+    }
   }
 }
 
@@ -84,3 +86,5 @@ class Lights {
 // }
 
 // new Lights().start();
+new Lights().change("red");
+new Lights().change("green");
