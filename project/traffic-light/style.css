@@ -11,6 +11,7 @@ body {
 }
 
 .traffic-light {
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,27 +36,23 @@ body {
 }
 
 #north {
-  position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
 }
 
 #east {
-  position: absolute;
   top: 50%;
   left: 100%;
   transform: translateX(-50%) rotate(90deg);
 }
 
 #west {
-  position: absolute;
   top: 50%;
   left: 0;
   transform: translateX(-50%) rotate(90deg);
 }
 #south {
-  position: absolute;
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
