@@ -16,11 +16,21 @@ class Light {
   }
 
   change(color) {
+    this.light.forEach((value) => {
+      value.classList.remove(...this.colors);
+    });
+
     this.light[this.colors.indexOf(color)].classList.add(color);
   }
 }
 
-class Lights {}
+class Lights {
+  constructor() {
+    this.directions = ["north", "south", "west", "east"];
+    this.lights = this.directions.map((direction) => {
+      return new Light(direction);
+    });
+  }
+}
 
-new Light("north");
-new Light("north").change("yellow");
+new Lights();
