@@ -63,11 +63,9 @@ class Lights {
     }, 8000);
     setTimeout(() => {
       this.pairChange("green", 0);
+      this.start();
     }, 8000);
   }
 }
 
 new Lights().start();
-setInterval(() => {
-  new Lights().start();
-}, 8000);
