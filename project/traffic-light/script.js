@@ -19,7 +19,6 @@ class Lights {
     this.lights = [];
     this.colors = ["red", "yellow", "green"];
 
-    document.getElementsByClassName("crossing")[0].appendChild(this.container);
     this.container.classList.add("traffic-light");
     this.container.id = id;
 
@@ -32,7 +31,6 @@ class Lights {
   change(color) {
     for (let i = 0; i < this.lights.length; i++) {
       if (this.lights[i].color === color) {
-        console.log(this.lights[i]);
         this.lights[i].on();
       } else {
         this.lights[i].off();
@@ -41,50 +39,53 @@ class Lights {
   }
 }
 
-// class Lights {
-//   constructor() {
-//     this.directions = ["north", "south", "west", "east"];
-//     this.lights = this.directions.map((direction) => {
-//       return new Light(direction);
-//     });
+class Crossing {
+  constructor() {
+    this.directions = ["north", "south", "west", "east"];
+    this.container = document.getElementsByClassName("crossing")[0];
+    this.lights = this.directions.map((direction) => {
+      return new Lights(direction);
+    });
 
-//     this.lights.slice(0, 2).forEach((light) => {
-//       light.change("green");
-//     });
-//     this.lights.slice(2).forEach((light) => {
-//       light.change("red");
-//     });
-//   }
+    this.lights.forEach((light) => {
+      this.container.appendChild(light.container);
+    });
 
-//   pairChange(color, num) {
-//     this.lights.slice(num, num + 2).forEach((light) => {
-//       light.change(color);
-//     });
-//   }
+    this.lights.slice(0, 2).forEach((light) => {
+      light.change("green");
+    });
+    this.lights.slice(2).forEach((light) => {
+      light.change("red");
+    });
+  }
 
-//   start() {
-//     setTimeout(() => {
-//       this.pairChange("yellow", 0);
-//     }, 2000);
-//     setTimeout(() => {
-//       this.pairChange("red", 0);
-//     }, 4000);
-//     setTimeout(() => {
-//       this.pairChange("green", 2);
-//     }, 4000);
-//     setTimeout(() => {
-//       this.pairChange("yellow", 2);
-//     }, 6000);
-//     setTimeout(() => {
-//       this.pairChange("red", 2);
-//     }, 8000);
-//     setTimeout(() => {
-//       this.pairChange("green", 0);
-//       this.start();
-//     }, 8000);
-//   }
-// }
+  pairChange(color, num) {
+    this.lights.slice(num, num + 2).forEach((light) => {
+      light.change(color);
+    });
+  }
 
-// new Lights().start();
-new Lights().change("red");
-new Lights().change("green");
+  start() {
+    setTimeout(() => {
+      this.pairChange("yellow", 0);
+    }, 2000);
+    setTimeout(() => {
+      this.pairChange("red", 0);
+    }, 4000);
+    setTimeout(() => {
+      this.pairChange("green", 2);
+    }, 4000);
+    setTimeout(() => {
+      this.pairChange("yellow", 2);
+    }, 6000);
+    setTimeout(() => {
+      this.pairChange("red", 2);
+    }, 8000);
+    setTimeout(() => {
+      this.pairChange("green", 0);
+      this.start();
+    }, 8000);
+  }
+}
+
+new Crossing().start();
