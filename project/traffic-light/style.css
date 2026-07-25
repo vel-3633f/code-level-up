@@ -34,26 +34,30 @@ body {
 .green {
   background-color: green;
 }
+#north,
+#south {
+  left: 50%;
+  transform: translateX(-50%);
+}
 
 #north {
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+}
+
+#south {
+  top: 100%;
+}
+
+#east,
+#west {
+  top: 50%;
+  transform: translateX(-50%) rotate(90deg);
 }
 
 #east {
-  top: 50%;
   left: 100%;
-  transform: translateX(-50%) rotate(90deg);
 }
 
 #west {
-  top: 50%;
   left: 0;
-  transform: translateX(-50%) rotate(90deg);
-}
-#south {
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
 }
