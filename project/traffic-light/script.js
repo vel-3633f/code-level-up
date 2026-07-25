@@ -1,4 +1,4 @@
-class Light {
+class Lamp {
   constructor(color) {
     this.color = color;
     this.element = document.createElement("div");
@@ -13,7 +13,7 @@ class Light {
   }
 }
 
-class Lights {
+class TrafficLight {
   constructor(id) {
     this.container = document.createElement("div");
     this.lights = [];
@@ -23,7 +23,7 @@ class Lights {
     this.container.id = id;
 
     for (let i = 0; i < this.colors.length; i++) {
-      this.lights.push(new Light(this.colors[i]));
+      this.lights.push(new Lamp(this.colors[i]));
       this.container.appendChild(this.lights[i].element);
     }
   }
@@ -44,7 +44,7 @@ class Crossing {
     this.directions = ["north", "south", "west", "east"];
     this.container = document.getElementsByClassName("crossing")[0];
     this.lights = this.directions.map((direction) => {
-      return new Lights(direction);
+      return new TrafficLight(direction);
     });
 
     this.lights.forEach((light) => {
