@@ -1,33 +1,36 @@
+
+
+
 // 糖衣構文 以下例
-let x = 0;
-x = x + 1;
-x++;
+// let x = 0;
+// x = x + 1;
+// x++;
 
-// 例 9.2
-function Range(from, to) {
-  this.from = from;
-  this.to = to;
-}
+// // 例 9.2
+// function Range(from, to) {
+//   this.from = from;
+//   this.to = to;
+// }
 
-Range.prototype = {
-  includes: function (x) {
-    return this.from <= x && x <= this.to;
-  },
+// Range.prototype = {
+//   includes: function (x) {
+//     return this.from <= x && x <= this.to;
+//   },
 
-  *[Symbol.iterator]() {
-    for (let x = Math.ceil(this.from); x <= this.to; x++) yield x;
-  },
+//   *[Symbol.iterator]() {
+//     for (let x = Math.ceil(this.from); x <= this.to; x++) yield x;
+//   },
 
-  toString: function (x) {
-    return `(${this.from},${this.to})`;
-  },
-};
+//   toString: function (x) {
+//     return `(${this.from},${this.to})`;
+//   },
+// };
 
-let r = new Range(1, 3);
+// let r = new Range(1, 3);
 
-console.log(r.includes(4));
-console.log(r.toString());
-console.log([...r]); //ここわからん
+// console.log(r.includes(4));
+// console.log(r.toString());
+// console.log([...r]); //ここわからん
 
 // 例 9.1
 // function range(from, to) {
