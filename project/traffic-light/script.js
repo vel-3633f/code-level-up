@@ -51,11 +51,14 @@ class TrafficLight {
 }
 
 class Crossing {
+  #directions;
   #lights;
+  container;
+  
   constructor() {
-    this.directions = ["north", "south", "west", "east"];
+    this.#directions = ["north", "south", "west", "east"];
     this.container = document.getElementsByClassName("crossing")[0];
-    this.#lights = this.directions.map((direction) => {
+    this.#lights = this.#directions.map((direction) => {
       return new TrafficLight(direction);
     });
 
