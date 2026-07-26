@@ -8,6 +8,12 @@ class Lamp {
     this.element.classList.add("light");
   }
 
+  static createList(colors) {
+    return colors.map((color) => {
+      return new Lamp(color);
+    });
+  }
+
   get color() {
     return this.#color;
   }
@@ -22,7 +28,7 @@ class Lamp {
 
 class TrafficLight {
   container;
-  #lights = [];
+  #lights;
   #colors = ["red", "yellow", "green"];
 
   constructor(id) {
@@ -31,10 +37,11 @@ class TrafficLight {
     this.container.classList.add("traffic-light");
     this.container.id = id;
 
-    for (let i = 0; i < this.#colors.length; i++) {
-      this.#lights.push(new Lamp(this.#colors[i]));
-      this.container.appendChild(this.#lights[i].element);
-    }
+    this.#lights = Lamp.createList(this.#colors);
+
+    this.#lights.forEach((light) => {
+      this.container.appendChild(light.element);
+    });
   }
 
   change(color) {
