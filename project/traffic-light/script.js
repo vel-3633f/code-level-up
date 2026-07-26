@@ -22,13 +22,11 @@ class Lamp {
 
 class TrafficLight {
   container;
-  #lights;
-  #colors;
+  #lights = [];
+  #colors = ["red", "yellow", "green"];
 
   constructor(id) {
     this.container = document.createElement("div");
-    this.#lights = [];
-    this.#colors = ["red", "yellow", "green"];
 
     this.container.classList.add("traffic-light");
     this.container.id = id;
@@ -51,12 +49,11 @@ class TrafficLight {
 }
 
 class Crossing {
-  #directions;
+  #directions = ["north", "south", "west", "east"];
   #lights;
   container;
-  
+
   constructor() {
-    this.#directions = ["north", "south", "west", "east"];
     this.container = document.getElementsByClassName("crossing")[0];
     this.#lights = this.#directions.map((direction) => {
       return new TrafficLight(direction);
