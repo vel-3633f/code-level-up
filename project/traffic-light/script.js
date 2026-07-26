@@ -1,66 +1,78 @@
 class Lamp {
+  #color;
+  element;
+
   constructor(color) {
-    this.color = color;
+    this.#color = color;
     this.element = document.createElement("div");
     this.element.classList.add("light");
   }
 
+  get color() {
+    return this.#color;
+  }
+
   on() {
-    this.element.classList.add(this.color);
+    this.element.classList.add(this.#color);
   }
   off() {
-    this.element.classList.remove(this.color);
+    this.element.classList.remove(this.#color);
   }
 }
 
 class TrafficLight {
+  container;
+  #lights;
+  #colors;
+
   constructor(id) {
     this.container = document.createElement("div");
-    this.lights = [];
-    this.colors = ["red", "yellow", "green"];
+    this.#lights = [];
+    this.#colors = ["red", "yellow", "green"];
 
     this.container.classList.add("traffic-light");
     this.container.id = id;
 
-    for (let i = 0; i < this.colors.length; i++) {
-      this.lights.push(new Lamp(this.colors[i]));
-      this.container.appendChild(this.lights[i].element);
+    for (let i = 0; i < this.#colors.length; i++) {
+      this.#lights.push(new Lamp(this.#colors[i]));
+      this.container.appendChild(this.#lights[i].element);
     }
   }
 
   change(color) {
-    for (let i = 0; i < this.lights.length; i++) {
-      if (this.lights[i].color === color) {
-        this.lights[i].on();
+    for (let i = 0; i < this.#lights.length; i++) {
+      if (this.#lights[i].color === color) {
+        this.#lights[i].on();
       } else {
-        this.lights[i].off();
+        this.#lights[i].off();
       }
     }
   }
 }
 
 class Crossing {
+  #lights;
   constructor() {
     this.directions = ["north", "south", "west", "east"];
     this.container = document.getElementsByClassName("crossing")[0];
-    this.lights = this.directions.map((direction) => {
+    this.#lights = this.directions.map((direction) => {
       return new TrafficLight(direction);
     });
 
-    this.lights.forEach((light) => {
+    this.#lights.forEach((light) => {
       this.container.appendChild(light.container);
     });
 
-    this.lights.slice(0, 2).forEach((light) => {
+    this.#lights.slice(0, 2).forEach((light) => {
       light.change("green");
     });
-    this.lights.slice(2).forEach((light) => {
+    this.#lights.slice(2).forEach((light) => {
       light.change("red");
     });
   }
 
   pairChange(color, num) {
-    this.lights.slice(num, num + 2).forEach((light) => {
+    this.#lights.slice(num, num + 2).forEach((light) => {
       light.change(color);
     });
   }
