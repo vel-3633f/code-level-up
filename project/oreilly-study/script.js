@@ -1,5 +1,31 @@
+class Range {
+  constructor(from, to) {
+    this.from = from;
+    this.to = to;
+  }
 
+  includes(x) {
+    return this.from <= x && this.to >= x;
+  }
 
+  toString() {
+    return `(${this.from},${this.to})`;
+  }
+}
+
+class Span extends Range {
+  constructor(start, length) {
+    if (length >= 0) {
+      super(start, start + length);
+    } else {
+      super(start + length, start);
+    }
+  }
+}
+
+let r = new Range(1, 2);
+let n = new Span(1, 2);
+console.log(n.includes(2));
 
 // 糖衣構文 以下例
 // let x = 0;
