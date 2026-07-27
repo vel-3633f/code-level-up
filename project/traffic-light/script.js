@@ -56,11 +56,19 @@ class TrafficLight {
 }
 
 class Crossing {
-  #directions = ["north", "south", "west", "east"];
+  // #directions = ["north", "south", "west", "east"];
+  #north;
+  #south;
+  #west;
+  #east;
   #lights;
   container;
 
-  constructor() {
+  constructor(shape) {
+    this.#north = shape.north;
+    this.#south = shape.south;
+    this.#west = shape.west;
+    this.#east = shape.east;
     this.container = document.getElementsByClassName("crossing")[0];
     this.#lights = this.#directions.map((direction) => {
       return new TrafficLight(direction);
@@ -107,4 +115,4 @@ class Crossing {
   }
 }
 
-new Crossing().start();
+new Crossing({ north: true, south: true, west: true, east: true }).start();
