@@ -9,9 +9,7 @@ class Lamp {
   }
 
   static createList(colors) {
-    return colors.map((color) => {
-      return new Lamp(color);
-    });
+    return colors.map((color) => new Lamp(color));
   }
 
   get color() {
