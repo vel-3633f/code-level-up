@@ -1,0 +1,25 @@
+{
+  "name": "code-level-up",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vel-3633f/code-level-up.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vel-3633f/code-level-up/issues"
+  },
+  "homepage": "https://github.com/vel-3633f/code-level-up#readme",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.8.1",
+    "globals": "^17.9.0"
+  }
+}
