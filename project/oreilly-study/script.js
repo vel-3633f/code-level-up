@@ -1,3 +1,5 @@
+
+
 // let Square = class {
 //   constructor(x) {
 //     this.area = x * x;
@@ -6,30 +8,30 @@
 
 // console.log(new Square(3).area);
 
-class Range {
-  constructor(from, to) {
-    this.from = from;
-    this.to = to;
-  }
+// class Range {
+//   constructor(from, to) {
+//     this.from = from;
+//     this.to = to;
+//   }
 
-  includes(x) {
-    return this.from <= x && this.to >= x;
-  }
+//   includes(x) {
+//     return this.from <= x && this.to >= x;
+//   }
 
-  toString() {
-    return `(${this.from},${this.to})`;
-  }
+//   toString() {
+//     return `(${this.from},${this.to})`;
+//   }
 
-  static parse(s) {
-    let matches = s.match(/^\((\d+)\.\.\.(\d+)\)$/);
-    if (!matches) {
-      throw new TypeError(`Cannot parse Range from ""${s}`);
-    }
-    return new Range(parseInt(matches[1]), parseInt(matches[2]));
-  }
-}
+//   static parse(s) {
+//     let matches = s.match(/^\((\d+)\.\.\.(\d+)\)$/);
+//     if (!matches) {
+//       throw new TypeError(`Cannot parse Range from ""${s}`);
+//     }
+//     return new Range(parseInt(matches[1]), parseInt(matches[2]));
+//   }
+// }
 
-console.log(Range.parse("(1...10)"));
+// console.log(Range.parse("(1...10)"));
 // class Span extends Range {
 //   constructor(start, length) {
 //     if (length >= 0) {
