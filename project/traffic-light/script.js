@@ -56,62 +56,41 @@ class TrafficLight {
 }
 
 class Crossing {
-  // #directions = ["north", "south", "west", "east"];
   #north;
   #south;
   #west;
   #east;
-  #lights;
   container;
 
   constructor(shape) {
-    this.#north = shape.north;
-    this.#south = shape.south;
-    this.#west = shape.west;
-    this.#east = shape.east;
+    this.#north = shape.north ? new TrafficLight("north") : null;
+    this.#south = shape.south ? new TrafficLight("south") : null;
+    this.#west = shape.west ? new TrafficLight("west") : null;
+    this.#east = shape.east ? new TrafficLight("east") : null;
+
     this.container = document.getElementsByClassName("crossing")[0];
-    this.#lights = this.#directions.map((direction) => {
-      return new TrafficLight(direction);
-    });
 
-    this.#lights.forEach((light) => {
-      this.container.appendChild(light.container);
-    });
-
-    this.#lights.slice(0, 2).forEach((light) => {
-      light.change("green");
-    });
-    this.#lights.slice(2).forEach((light) => {
-      light.change("red");
-    });
+    this.container.appendChild(this.#north.container);
+    this.container.appendChild(this.#south.container);
+    this.container.appendChild(this.#west.container);
+    this.container.appendChild(this.#east.container);
   }
 
-  pairChange(color, num) {
-    this.#lights.slice(num, num + 2).forEach((light) => {
-      light.change(color);
-    });
+  changeNorthSouth(color) {
+    this.#north.change(color);
+    this.#south.change(color);
+  }
+
+  changeEastWest(color) {
+    this.#east.change(color);
+    this.#west.change(color);
   }
 
   start() {
     setTimeout(() => {
-      this.pairChange("yellow", 0);
+      this.changeEastWest("yellow");
+      this.changeNorthSouth("red");
     }, 2000);
-    setTimeout(() => {
-      this.pairChange("red", 0);
-    }, 4000);
-    setTimeout(() => {
-      this.pairChange("green", 2);
-    }, 4000);
-    setTimeout(() => {
-      this.pairChange("yellow", 2);
-    }, 6000);
-    setTimeout(() => {
-      this.pairChange("red", 2);
-    }, 8000);
-    setTimeout(() => {
-      this.pairChange("green", 0);
-      this.start();
-    }, 8000);
   }
 }
 
