@@ -61,6 +61,13 @@ class Crossing {
   #west;
   #east;
   container;
+  #step = 0;
+  #steps = [
+    { ns: "green", we: "red", duration: 2000 },
+    { ns: "yellow", we: "red", duration: 2000 },
+    { ns: "red", we: "green", duration: 2000 },
+    { ns: "red", we: "yellow", duration: 2000 },
+  ];
 
   constructor(shape) {
     this.#north = shape.north ? new TrafficLight("north") : null;
@@ -87,10 +94,12 @@ class Crossing {
   }
 
   start() {
+    this.changeNorthSouth(this.#steps[this.#step].ns);
+    this.changeEastWest(this.#steps[this.#step].we);
     setTimeout(() => {
-      this.changeEastWest("yellow");
-      this.changeNorthSouth("red");
-    }, 2000);
+      this.#step = (this.#step + 1) % 4;
+      this.start();
+    }, this.#steps[this.#step].duration);
   }
 }
 
