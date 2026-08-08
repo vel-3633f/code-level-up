@@ -1,4 +1,12 @@
+// class Buffer {
+//   #size = 13;
+//   get size() {
+//     return this.#size;
+//   }
+// }
 
+// const a = new Buffer();
+// console.log(a.size);
 
 // let Square = class {
 //   constructor(x) {
