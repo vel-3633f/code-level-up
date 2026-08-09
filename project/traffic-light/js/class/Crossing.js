@@ -1,59 +1,6 @@
-class Lamp {
-  #color;
-  element;
+import TrafficLight from "./TrafficLight.js";
 
-  constructor(color) {
-    this.#color = color;
-    this.element = document.createElement("div");
-    this.element.classList.add("light");
-  }
-
-  static createList(colors) {
-    return colors.map((color) => new Lamp(color));
-  }
-
-  get color() {
-    return this.#color;
-  }
-
-  on() {
-    this.element.classList.add(this.#color);
-  }
-  off() {
-    this.element.classList.remove(this.#color);
-  }
-}
-
-class TrafficLight {
-  container;
-  #lights;
-  #colors = ["red", "yellow", "green"];
-
-  constructor(id) {
-    this.container = document.createElement("div");
-
-    this.container.classList.add("traffic-light");
-    this.container.id = id;
-
-    this.#lights = Lamp.createList(this.#colors);
-
-    this.#lights.forEach((light) => {
-      this.container.appendChild(light.element);
-    });
-  }
-
-  change(color) {
-    for (let i = 0; i < this.#lights.length; i++) {
-      if (this.#lights[i].color === color) {
-        this.#lights[i].on();
-      } else {
-        this.#lights[i].off();
-      }
-    }
-  }
-}
-
-class Crossing {
+export default class Crossing {
   #north;
   #south;
   #west;
@@ -100,5 +47,3 @@ class Crossing {
     }, Crossing.#steps[this.#step].duration);
   }
 }
-
-new Crossing({ north: true, south: true, west: true, east: true }).start();
