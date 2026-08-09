@@ -1,24 +1,31 @@
 import Lamp from "./Lamp.js";
+import { POSITIONS } from "../constants.js";
 
 export default class TrafficLight {
-  container;
+  #container;
   #lights;
   #colors = ["red", "yellow", "green"];
-
-  constructor(id) {
-    this.container = document.createElement("div");
-
-    this.container.classList.add("traffic-light");
-    this.container.id = id;
-
-    this.#lights = Lamp.createList(this.#colors);
-
-    this.#lights.forEach((light) => {
-      this.container.appendChild(light.element);
-    });
+  constructor(direction) {
+    this.#container = TrafficLight.createElement(direction);
+    this.#lights = this.#colors.map((color) => new Lamp(color));
+    this.#container.append(...this.#lights.map((light) => light.element));
   }
 
-  change(color) {
+  get container() {
+    return this.#container;
+  }
+  get colors() {
+    return this.#colors;
+  }
+
+  static createElement(direction) {
+    const element = document.createElement("div");
+    element.classList.add("traffic-light");
+    Object.assign(element.style, POSITIONS[direction]);
+    return element;
+  }
+
+  changeLight(color) {
     this.#lights.forEach((light) => {
       if (light.color === color) {
         light.on();

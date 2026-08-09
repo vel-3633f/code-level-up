@@ -5,9 +5,9 @@ export default class Crossing {
   #south;
   #west;
   #east;
-  container;
+  #container;
   #step = 0;
-  static #steps = [
+  #steps = [
     { duration: 2000, ns: "green", we: "red" },
     { duration: 2000, ns: "yellow", we: "red" },
     { duration: 2000, ns: "red", we: "green" },
@@ -20,30 +20,41 @@ export default class Crossing {
     this.#west = shape.west ? new TrafficLight("west") : null;
     this.#east = shape.east ? new TrafficLight("east") : null;
 
-    this.container = document.getElementsByClassName("crossing")[0];
+    this.#container = document.getElementById("crossing");
 
-    this.container.appendChild(this.#north.container);
-    this.container.appendChild(this.#south.container);
-    this.container.appendChild(this.#west.container);
-    this.container.appendChild(this.#east.container);
+    this.#container.append(
+      ...[
+        this.#north.container,
+        this.#south.container,
+        this.#west.container,
+        this.#east.container,
+      ],
+    );
   }
 
-  changeNorthSouth(color) {
-    this.#north.change(color);
-    this.#south.change(color);
+  get container() {
+    return this.#container;
+  }
+  get steps() {
+    return this.#steps;
   }
 
-  changeEastWest(color) {
-    this.#east.change(color);
-    this.#west.change(color);
+  changeNorthSouthLight(color) {
+    this.#north.changeLight(color);
+    this.#south.changeLight(color);
+  }
+
+  changeEastWestLight(color) {
+    this.#east.changeLight(color);
+    this.#west.changeLight(color);
   }
 
   start() {
-    this.changeNorthSouth(Crossing.#steps[this.#step].ns);
-    this.changeEastWest(Crossing.#steps[this.#step].we);
+    this.changeNorthSouthLight(this.#steps[this.#step].ns);
+    this.changeEastWestLight(this.#steps[this.#step].we);
     setTimeout(() => {
-      this.#step = (this.#step + 1) % Crossing.#steps.length;
+      this.#step = (this.#step + 1) % this.#steps.length;
       this.start();
-    }, Crossing.#steps[this.#step].duration);
+    }, this.#steps[this.#step].duration);
   }
 }

@@ -4,7 +4,7 @@ body {
   align-items: center;
   height: 100vh;
 }
-.crossing {
+#crossing {
   position: relative;
   width: 500px;
   height: 500px;
@@ -33,31 +33,4 @@ body {
 }
 .green {
   background-color: green;
-}
-#north,
-#south {
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-#north {
-  top: 0;
-}
-
-#south {
-  top: 100%;
-}
-
-#east,
-#west {
-  top: 50%;
-  transform: translateX(-50%) rotate(90deg);
-}
-
-#east {
-  left: 100%;
-}
-
-#west {
-  left: 0;
 }
