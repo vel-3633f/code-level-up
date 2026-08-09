@@ -1,3 +1,3 @@
 import Crossing from "./class/Crossing.js";
 
-new Crossing({ north: true, south: true, west: true, east: true }).start();
+new Crossing({ east: true, north: true, south: true, west: true }).start();

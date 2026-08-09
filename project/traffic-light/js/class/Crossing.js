@@ -8,10 +8,10 @@ export default class Crossing {
   container;
   #step = 0;
   static #steps = [
-    { ns: "green", we: "red", duration: 2000 },
-    { ns: "yellow", we: "red", duration: 2000 },
-    { ns: "red", we: "green", duration: 2000 },
-    { ns: "red", we: "yellow", duration: 2000 },
+    { duration: 2000, ns: "green", we: "red" },
+    { duration: 2000, ns: "yellow", we: "red" },
+    { duration: 2000, ns: "red", we: "green" },
+    { duration: 2000, ns: "red", we: "yellow" },
   ];
 
   constructor(shape) {
@@ -42,7 +42,7 @@ export default class Crossing {
     this.changeNorthSouth(Crossing.#steps[this.#step].ns);
     this.changeEastWest(Crossing.#steps[this.#step].we);
     setTimeout(() => {
-      this.#step = (this.#step + 1) % 4;
+      this.#step = (this.#step + 1) % Crossing.#steps.length;
       this.start();
     }, Crossing.#steps[this.#step].duration);
   }
