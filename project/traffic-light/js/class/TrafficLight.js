@@ -19,12 +19,12 @@ export default class TrafficLight {
   }
 
   change(color) {
-    for (let i = 0; i < this.#lights.length; i++) {
-      if (this.#lights[i].color === color) {
-        this.#lights[i].on();
+    this.#lights.forEach((light) => {
+      if (light.color === color) {
+        light.on();
       } else {
-        this.#lights[i].off();
+        light.off();
       }
-    }
+    });
   }
 }
