@@ -1,4 +1,43 @@
+// function Range(from, to) {
+//   this.from = from;
+//   this.to = to;
+// }
 
+// Range.prototype = {
+//   includes: function (x) {
+//     return this.from <= x && x <= this.to;
+//   },
+
+//   *[Symbol.iterator]() {
+//     for (let x = Math.ceil(this.from); x <= this.to; x++) yield x;
+//   },
+
+//   toString: function (x) {
+//     return `(${this.from},${this.to})`;
+//   },
+// };
+
+// function Span(start, span) {
+//   if (span >= 0) {
+//     this.from = start;
+//     this.to = start + span;
+//   } else {
+//     this.to = start;
+//     this.from = start + span;
+//   }
+// }
+// Span.prototype = Object.create(Range.prototype);
+
+// console.log(Span.prototype);
+// console.log(Range.prototype);
+
+// Span.prototype.constructor = Span;
+
+// Span.prototype.toString = function () {
+//   return `(${this.from}... + ${this.to - this.from})`;
+// };
+
+// console.log(new Span(1, 2).toString());
 
 // class Complex {
 //   constructor(real, imaginary) {
