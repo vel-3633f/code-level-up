@@ -32,13 +32,6 @@ export default class Crossing {
     );
   }
 
-  get container() {
-    return this.#container;
-  }
-  get steps() {
-    return this.#steps;
-  }
-
   changeNorthSouthLight(color) {
     this.#north.changeLight(color);
     this.#south.changeLight(color);
