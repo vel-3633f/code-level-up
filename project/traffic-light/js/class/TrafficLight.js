@@ -14,9 +14,6 @@ export default class TrafficLight {
   get container() {
     return this.#container;
   }
-  get colors() {
-    return this.#colors;
-  }
 
   static createElement(direction) {
     const element = document.createElement("div");
