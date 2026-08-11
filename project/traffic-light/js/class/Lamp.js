@@ -4,7 +4,7 @@ export default class Lamp {
 
   constructor(color) {
     this.#color = color;
-    this.#element = Lamp.createElement();
+    this.#element = Lamp.createLampElement();
   }
 
   get color() {
@@ -15,7 +15,7 @@ export default class Lamp {
     return this.#element;
   }
 
-  static createElement() {
+  static createLampElement() {
     const element = document.createElement("div");
     element.classList.add("light");
     return element;

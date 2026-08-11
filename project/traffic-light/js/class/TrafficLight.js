@@ -6,7 +6,7 @@ export default class TrafficLight {
   #lamps;
   #colors = ["red", "yellow", "green"];
   constructor(direction) {
-    this.#container = TrafficLight.createElement(direction);
+    this.#container = TrafficLight.createContainerElement(direction);
     this.#lamps = this.#colors.map((color) => new Lamp(color));
     this.#container.append(...this.#lamps.map((light) => light.element));
   }
@@ -15,7 +15,7 @@ export default class TrafficLight {
     return this.#container;
   }
 
-  static createElement(direction) {
+  static createContainerElement(direction) {
     const element = document.createElement("div");
     element.classList.add("traffic-light");
     Object.assign(element.style, POSITIONS[direction]);
