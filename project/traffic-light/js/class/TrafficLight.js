@@ -3,12 +3,12 @@ import { POSITIONS } from "../constants.js";
 
 export default class TrafficLight {
   #container;
-  #lights;
+  #lamps;
   #colors = ["red", "yellow", "green"];
   constructor(direction) {
     this.#container = TrafficLight.createElement(direction);
-    this.#lights = this.#colors.map((color) => new Lamp(color));
-    this.#container.append(...this.#lights.map((light) => light.element));
+    this.#lamps = this.#colors.map((color) => new Lamp(color));
+    this.#container.append(...this.#lamps.map((light) => light.element));
   }
 
   get container() {
@@ -25,12 +25,12 @@ export default class TrafficLight {
     return element;
   }
 
-  changeLight(color) {
-    this.#lights.forEach((light) => {
-      if (light.color === color) {
-        light.on();
+  changeLamp(color) {
+    this.#lamps.forEach((lamp) => {
+      if (lamp.color === color) {
+        lamp.on();
       } else {
-        light.off();
+        lamp.off();
       }
     });
   }

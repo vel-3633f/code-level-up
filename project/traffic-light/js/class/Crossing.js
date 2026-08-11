@@ -32,19 +32,19 @@ export default class Crossing {
     );
   }
 
-  changeNorthSouthLight(color) {
-    this.#north.changeLight(color);
-    this.#south.changeLight(color);
+  changeNorthSouthLamp(color) {
+    this.#north.changeLamp(color);
+    this.#south.changeLamp(color);
   }
 
-  changeEastWestLight(color) {
-    this.#east.changeLight(color);
-    this.#west.changeLight(color);
+  changeEastWestLamp(color) {
+    this.#east.changeLamp(color);
+    this.#west.changeLamp(color);
   }
 
   start() {
-    this.changeNorthSouthLight(this.#steps[this.#step].ns);
-    this.changeEastWestLight(this.#steps[this.#step].we);
+    this.changeNorthSouthLamp(this.#steps[this.#step].ns);
+    this.changeEastWestLamp(this.#steps[this.#step].we);
     setTimeout(() => {
       this.#step = (this.#step + 1) % this.#steps.length;
       this.start();
