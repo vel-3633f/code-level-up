@@ -11,7 +11,7 @@ export default class Crossing {
 
   #container;
 
-  #step = 0;
+  #stepIndex = 0;
 
   #steps = [
     { duration: 2000, ns: "green", we: "red" },
@@ -49,11 +49,11 @@ export default class Crossing {
   }
 
   start() {
-    this.changeNorthSouthLamp(this.#steps[this.#step].ns);
-    this.changeEastWestLamp(this.#steps[this.#step].we);
+    this.changeNorthSouthLamp(this.#steps[this.#stepIndex].ns);
+    this.changeEastWestLamp(this.#steps[this.#stepIndex].we);
     setTimeout(() => {
-      this.#step = (this.#step + 1) % this.#steps.length;
+      this.#stepIndex = (this.#stepIndex + 1) % this.#steps.length;
       this.start();
-    }, this.#steps[this.#step].duration);
+    }, this.#steps[this.#stepIndex].duration);
   }
 }

@@ -4,33 +4,9 @@ body {
   align-items: center;
   height: 100vh;
 }
+
 #crossing {
   position: relative;
   width: 500px;
   height: 500px;
-}
-
-.traffic-light {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-
-.light {
-  width: 50px;
-  height: 50px;
-  background-color: grey;
-  border-radius: 50%;
-}
-
-.red {
-  background-color: red;
-}
-.yellow {
-  background-color: yellow;
-}
-.green {
-  background-color: green;
 }

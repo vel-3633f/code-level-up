@@ -1,3 +1,5 @@
+import { LAMP_OFF_COLOR, LAMP_STYLE } from "../constants.js";
+
 export default class Lamp {
   #color;
 
@@ -18,15 +20,15 @@ export default class Lamp {
 
   static createLampElement() {
     const element = document.createElement("div");
-    element.classList.add("light");
+    Object.assign(element.style, LAMP_STYLE);
     return element;
   }
 
   on() {
-    this.#element.classList.add(this.#color);
+    this.#element.style.backgroundColor = this.#color;
   }
 
   off() {
-    this.#element.classList.remove(this.#color);
+    this.#element.style.backgroundColor = LAMP_OFF_COLOR;
   }
 }
