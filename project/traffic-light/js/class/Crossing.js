@@ -1,7 +1,5 @@
 import TrafficLight from "./TrafficLight.js";
 
-const unused = 1;
-
 export default class Crossing {
   #north;
 

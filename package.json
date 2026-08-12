@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/vel-3633f/code-level-up#readme",
   "lint-staged": {
-    "*.{js,mjs}": "eslint"
+    "*.{js,mjs}": "eslint --max-warnings=0"
   },
   "devDependencies": {
     "@eslint/compat": "^2.1.0",
