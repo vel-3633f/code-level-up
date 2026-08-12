@@ -1,10 +1,13 @@
 import Lamp from "./Lamp.js";
-import { POSITIONS } from "../constants.js";
+import POSITION_STYLES from "../constants.js";
 
 export default class TrafficLight {
   #container;
+
   #lamps;
+
   #colors = ["red", "yellow", "green"];
+
   constructor(direction) {
     this.#container = TrafficLight.createContainerElement(direction);
     this.#lamps = this.#colors.map((color) => new Lamp(color));
@@ -18,7 +21,7 @@ export default class TrafficLight {
   static createContainerElement(direction) {
     const element = document.createElement("div");
     element.classList.add("traffic-light");
-    Object.assign(element.style, POSITIONS[direction]);
+    Object.assign(element.style, POSITION_STYLES[direction]);
     return element;
   }
 

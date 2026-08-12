@@ -2,11 +2,17 @@ import TrafficLight from "./TrafficLight.js";
 
 export default class Crossing {
   #north;
+
   #south;
+
   #west;
+
   #east;
+
   #container;
+
   #step = 0;
+
   #steps = [
     { duration: 2000, ns: "green", we: "red" },
     { duration: 2000, ns: "yellow", we: "red" },

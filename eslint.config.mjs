@@ -1,17 +1,60 @@
-import { defineConfig } from "eslint/config";
-import globals from "globals";
-import js from "@eslint/js";
+import path from "node:path";
 
-export default defineConfig([
+import { includeIgnoreFile } from "@eslint/compat";
+import js from "@eslint/js";
+import { defineConfig } from "eslint/config";
+import { configs, plugins, rules } from "eslint-config-airbnb-extended";
+import { rules as prettierConfigRules } from "eslint-config-prettier";
+import prettierPlugin from "eslint-plugin-prettier";
+import globals from "globals";
+
+const gitignorePath = path.resolve(".", ".gitignore");
+
+const jsConfig = defineConfig([
   {
-    extends: ["js/all"],
-    files: ["**/*.{js,mjs,cjs}"],
-    languageOptions: { globals: globals.browser },
-    plugins: { js },
-    rules: {
-      "no-magic-numbers": ["error", { ignore: [0, 1] }],
-      "no-ternary": "off",
-      "prefer-destructuring": "off",
+    name: "js/config",
+    ...js.configs.recommended,
+  },
+  plugins.stylistic,
+  plugins.importX,
+  ...configs.base.recommended,
+  rules.base.importsStrict,
+]);
+
+const nodeConfig = defineConfig([plugins.node, ...configs.node.recommended]);
+
+const prettierConfig = defineConfig([
+  {
+    name: "prettier/plugin/config",
+    plugins: {
+      prettier: prettierPlugin,
     },
   },
+  {
+    name: "prettier/config",
+    rules: {
+      ...prettierConfigRules,
+      "prettier/prettier": "error",
+      "import-x/extensions": "off",
+    },
+  },
+]);
+
+export default defineConfig([
+  includeIgnoreFile(gitignorePath),
+  ...jsConfig,
+  ...nodeConfig,
+  {
+    name: "project/language-options",
+    languageOptions: {
+      sourceType: "module",
+      ecmaVersion: "latest",
+      parserOptions: {
+        ecmaVersion: "latest",
+        sourceType: "module",
+      },
+      globals: globals.browser,
+    },
+  },
+  ...prettierConfig,
 ]);

@@ -1,5 +1,6 @@
 export default class Lamp {
   #color;
+
   #element;
 
   constructor(color) {
@@ -24,6 +25,7 @@ export default class Lamp {
   on() {
     this.#element.classList.add(this.#color);
   }
+
   off() {
     this.#element.classList.remove(this.#color);
   }
