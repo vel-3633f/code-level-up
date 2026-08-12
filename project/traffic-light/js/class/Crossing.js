@@ -9,8 +9,6 @@ export default class Crossing {
 
   #east;
 
-  #container;
-
   #stepIndex = 0;
 
   #steps = [
@@ -26,16 +24,16 @@ export default class Crossing {
     this.#west = shape.west ? new TrafficLight("west") : null;
     this.#east = shape.east ? new TrafficLight("east") : null;
 
-    this.#container = document.getElementById("crossing");
-
-    this.#container.append(
-      ...[
-        this.#north.container,
-        this.#south.container,
-        this.#west.container,
-        this.#east.container,
-      ],
-    );
+    document
+      .getElementById("crossing")
+      .append(
+        ...[
+          this.#north.container,
+          this.#south.container,
+          this.#west.container,
+          this.#east.container,
+        ],
+      );
   }
 
   changeNorthSouthLamp(color) {

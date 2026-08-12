@@ -30,12 +30,11 @@ export default class TrafficLight {
   }
 
   changeLamp(color) {
-    this.#lamps.forEach((lamp) => {
-      if (lamp.color === color) {
-        lamp.on();
-      } else {
-        lamp.off();
-      }
-    });
+    this.#lamps
+      .filter((lamp) => lamp.color === color)
+      .forEach((lamp) => lamp.on());
+    this.#lamps
+      .filter((lamp) => lamp.color !== color)
+      .forEach((lamp) => lamp.off());
   }
 }
