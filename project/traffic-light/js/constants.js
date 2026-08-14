@@ -27,5 +27,5 @@ export const LAMP_STYLE = {
 export const CROSSING_STYLE = {
   width: '500px',
   height: '500px',
-  postion: 'relative',
+  position: 'relative',
 };
