@@ -1,4 +1,4 @@
-import TrafficLight from "./TrafficLight.js";
+import TrafficLight from './TrafficLight.js';
 
 export default class Crossing {
   #north;
@@ -12,20 +12,20 @@ export default class Crossing {
   #stepIndex = 0;
 
   #steps = [
-    { duration: 2000, ns: "green", we: "red" },
-    { duration: 2000, ns: "yellow", we: "red" },
-    { duration: 2000, ns: "red", we: "green" },
-    { duration: 2000, ns: "red", we: "yellow" },
+    { duration: 2000, ns: 'green', we: 'red' },
+    { duration: 2000, ns: 'yellow', we: 'red' },
+    { duration: 2000, ns: 'red', we: 'green' },
+    { duration: 2000, ns: 'red', we: 'yellow' },
   ];
 
   constructor(shape) {
-    this.#north = shape.north ? new TrafficLight("north") : null;
-    this.#south = shape.south ? new TrafficLight("south") : null;
-    this.#west = shape.west ? new TrafficLight("west") : null;
-    this.#east = shape.east ? new TrafficLight("east") : null;
+    this.#north = shape.north ? new TrafficLight('north') : null;
+    this.#south = shape.south ? new TrafficLight('south') : null;
+    this.#west = shape.west ? new TrafficLight('west') : null;
+    this.#east = shape.east ? new TrafficLight('east') : null;
 
     document
-      .getElementById("crossing")
+      .getElementById('crossing')
       .append(
         ...[
           this.#north.container,

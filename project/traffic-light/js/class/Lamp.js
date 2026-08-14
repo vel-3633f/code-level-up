@@ -1,4 +1,4 @@
-import { LAMP_OFF_COLOR, LAMP_STYLE } from "../constants.js";
+import { LAMP_OFF_COLOR, LAMP_STYLE } from '../constants.js';
 
 export default class Lamp {
   #color;
@@ -19,7 +19,7 @@ export default class Lamp {
   }
 
   static createLampElement() {
-    const element = document.createElement("div");
+    const element = document.createElement('div');
     Object.assign(element.style, LAMP_STYLE);
     return element;
   }
