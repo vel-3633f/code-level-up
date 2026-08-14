@@ -1,4 +1,5 @@
 import TrafficLight from './TrafficLight.js';
+import { CROSSING_STYLE } from '../constants.js';
 
 export default class Crossing {
   #north;
@@ -33,7 +34,10 @@ export default class Crossing {
           this.#west.container,
           this.#east.container,
         ],
+
       );
+    Object.assign(document
+      .getElementById('crossing').style, CROSSING_STYLE);
   }
 
   changeNorthSouthLamp(color) {

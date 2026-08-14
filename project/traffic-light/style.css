@@ -4,9 +4,3 @@ body {
   align-items: center;
   height: 100vh;
 }
-
-#crossing {
-  position: relative;
-  width: 500px;
-  height: 500px;
-}

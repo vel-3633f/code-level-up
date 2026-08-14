@@ -23,3 +23,9 @@ export const LAMP_STYLE = {
   backgroundColor: LAMP_OFF_COLOR,
   borderRadius: '50%',
 };
+
+export const CROSSING_STYLE = {
+  width: '500px',
+  height: '500px',
+  postion: 'relative',
+};
