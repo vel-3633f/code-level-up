@@ -1,4 +1,4 @@
-export const LAMP_OFF_COLOR = 'grey';
+export const LAMP_OFF_COLOR = 'gray';
 
 export const POSITION_STYLES = {
   east: {
