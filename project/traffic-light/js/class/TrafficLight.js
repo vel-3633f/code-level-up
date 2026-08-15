@@ -20,7 +20,6 @@ export default class TrafficLight {
 
   static createContainerElement(direction) {
     const element = document.createElement('div');
-    element.classList.add('traffic-light');
     Object.assign(
       element.style,
       TRAFFIC_LIGHT_STYLE,
