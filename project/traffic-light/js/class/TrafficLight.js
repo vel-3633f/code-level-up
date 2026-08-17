@@ -8,10 +8,18 @@ export default class TrafficLight {
 
   #colors = ['red', 'yellow', 'green'];
 
+  #sequence = [
+    { color: 'green', duration: 2000 },
+    { color: 'yellow', duration: 2000 },
+  ];
+
+  #sequenceIndex = 0;
+
   constructor(direction) {
     this.#container = TrafficLight.createContainerElement(direction);
     this.#lamps = this.#colors.map((color) => new Lamp(color));
     this.#container.append(...this.#lamps.map((lamp) => lamp.element));
+    this.changeLamp(this.#colors[0]);
   }
 
   get container() {
@@ -35,5 +43,19 @@ export default class TrafficLight {
     this.#lamps
       .filter((lamp) => lamp.color !== color)
       .forEach((lamp) => lamp.off());
+  }
+
+  start(onFinish) {
+    if (this.#sequenceIndex < this.#sequence.length) {
+      this.changeLamp(this.#sequence[this.#sequenceIndex].color);
+      setTimeout(() => {
+        this.#sequenceIndex += 1;
+        this.start(onFinish);
+      }, this.#sequence[this.#sequenceIndex].duration);
+    } else {
+      this.changeLamp(this.#colors[0]);
+      this.#sequenceIndex = 0;
+      onFinish();
+    }
   }
 }

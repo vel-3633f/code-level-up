@@ -10,15 +10,6 @@ export default class Crossing {
 
   #east;
 
-  #stepIndex = 0;
-
-  #steps = [
-    { duration: 2000, ns: 'green', we: 'red' },
-    { duration: 2000, ns: 'yellow', we: 'red' },
-    { duration: 2000, ns: 'red', we: 'green' },
-    { duration: 2000, ns: 'red', we: 'yellow' },
-  ];
-
   constructor(shape) {
     this.#north = shape.north ? new TrafficLight('north') : null;
     this.#south = shape.south ? new TrafficLight('south') : null;
@@ -40,22 +31,21 @@ export default class Crossing {
       .getElementById('crossing').style, CROSSING_STYLE);
   }
 
-  changeNorthSouthLamp(color) {
-    this.#north.changeLamp(color);
-    this.#south.changeLamp(color);
+  startNorthSouth(onFinish) {
+    this.#south.start(() => {});
+    this.#north.start(onFinish);
   }
 
-  changeEastWestLamp(color) {
-    this.#east.changeLamp(color);
-    this.#west.changeLamp(color);
+  startEastWest(onFinish) {
+    this.#west.start(() => {});
+    this.#east.start(onFinish);
   }
 
   start() {
-    this.changeNorthSouthLamp(this.#steps[this.#stepIndex].ns);
-    this.changeEastWestLamp(this.#steps[this.#stepIndex].we);
-    setTimeout(() => {
-      this.#stepIndex = (this.#stepIndex + 1) % this.#steps.length;
-      this.start();
-    }, this.#steps[this.#stepIndex].duration);
+    this.startNorthSouth(() => {
+      this.startEastWest(() => {
+        this.start();
+      });
+    });
   }
 }
