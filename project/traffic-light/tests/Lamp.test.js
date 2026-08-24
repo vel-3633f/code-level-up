@@ -8,7 +8,7 @@ test.each(['red', 'yellow', 'green'])('on()を呼ぶと %s が点灯する', (co
   expect(lamp.element.style.backgroundColor).toBe(color);
 });
 
-test('off()を呼ぶと、greyに消灯する', () => {
+test('off()を呼ぶと、grayに消灯する', () => {
   const lamp = new Lamp('red');
   lamp.off();
   expect(lamp.element.style.backgroundColor).toBe('gray');
