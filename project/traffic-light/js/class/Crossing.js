@@ -11,10 +11,10 @@ export default class Crossing {
   #east;
 
   constructor(shape) {
-    this.#north = shape.north ? new TrafficLight('north') : null;
-    this.#south = shape.south ? new TrafficLight('south') : null;
-    this.#west = shape.west ? new TrafficLight('west') : null;
-    this.#east = shape.east ? new TrafficLight('east') : null;
+    this.#north = shape.north ? new TrafficLight('north') : undefined;
+    this.#south = shape.south ? new TrafficLight('south') : undefined;
+    this.#west = shape.west ? new TrafficLight('west') : undefined;
+    this.#east = shape.east ? new TrafficLight('east') : undefined;
 
     document
       .getElementById('crossing')
