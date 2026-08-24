@@ -47,11 +47,12 @@ export default class TrafficLight {
 
   start(onFinish) {
     if (this.#sequenceIndex < this.#sequence.length) {
-      this.changeLamp(this.#sequence[this.#sequenceIndex].color);
+      const { color, duration } = this.#sequence[this.#sequenceIndex];
+      this.changeLamp(color);
       setTimeout(() => {
         this.#sequenceIndex += 1;
         this.start(onFinish);
-      }, this.#sequence[this.#sequenceIndex].duration);
+      }, duration);
     } else {
       this.changeLamp(this.#colors[0]);
       this.#sequenceIndex = 0;
