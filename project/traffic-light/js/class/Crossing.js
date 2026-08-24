@@ -29,23 +29,22 @@ export default class Crossing {
       );
     Object.assign(document
       .getElementById('crossing').style, CROSSING_STYLE);
+
+    this.#north.addEventListener('finish', () => this.startEastWest());
+    this.#east.addEventListener('finish', () => this.startNorthSouth());
   }
 
-  startNorthSouth(onFinish) {
-    this.#south.start(() => {});
-    this.#north.start(onFinish);
+  startNorthSouth() {
+    this.#south.start();
+    this.#north.start();
   }
 
-  startEastWest(onFinish) {
-    this.#west.start(() => {});
-    this.#east.start(onFinish);
+  startEastWest() {
+    this.#west.start();
+    this.#east.start();
   }
 
   start() {
-    this.startNorthSouth(() => {
-      this.startEastWest(() => {
-        this.start();
-      });
-    });
+    this.startNorthSouth();
   }
 }

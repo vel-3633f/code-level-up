@@ -1,7 +1,7 @@
 import Lamp from './Lamp.js';
 import { POSITION_STYLES, TRAFFIC_LIGHT_STYLE } from '../constants.js';
 
-export default class TrafficLight {
+export default class TrafficLight extends EventTarget {
   #container;
 
   #lamps;
@@ -16,6 +16,7 @@ export default class TrafficLight {
   #sequenceIndex = 0;
 
   constructor(direction) {
+    super();
     this.#container = TrafficLight.createContainerElement(direction);
     this.#lamps = this.#colors.map((color) => new Lamp(color));
     this.#container.append(...this.#lamps.map((lamp) => lamp.element));
@@ -45,18 +46,18 @@ export default class TrafficLight {
       .forEach((lamp) => lamp.off());
   }
 
-  start(onFinish) {
+  start() {
     if (this.#sequenceIndex < this.#sequence.length) {
       const { color, duration } = this.#sequence[this.#sequenceIndex];
       this.changeLamp(color);
       setTimeout(() => {
         this.#sequenceIndex += 1;
-        this.start(onFinish);
+        this.start();
       }, duration);
     } else {
       this.changeLamp(this.#colors[0]);
       this.#sequenceIndex = 0;
-      onFinish();
+      this.dispatchEvent(new Event('finish'));
     }
   }
 }
