@@ -13,3 +13,15 @@ test('off()を呼ぶと、grayに消灯する', () => {
   lamp.off();
   expect(lamp.element.style.backgroundColor).toBe('gray');
 });
+
+test('生成時に渡した色を保持する', () => {
+  const lamp = new Lamp('red');
+  expect(lamp.color).toBe('red');
+});
+
+test('on()の後にoff()を呼ぶと消灯する', () => {
+  const lamp = new Lamp('red');
+  lamp.on();
+  lamp.off();
+  expect(lamp.element.style.backgroundColor).toBe('gray');
+});
