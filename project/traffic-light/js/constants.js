@@ -1,14 +1,31 @@
 export const LAMP_OFF_COLOR = 'gray';
 
+const TRAFFIC_EDGE_MARGIN = 8;
+const TRAFFIC_LANE_SHIFT = 5;
+const PEDESTRIAN_EDGE_MARGIN = 23;
+const PEDESTRIAN_SIDE_MARGIN = 12;
+
 export const TRAFFIC_POSITION_STYLES = {
-  east: {
-    left: '100%',
-    top: '40%',
-    transform: 'translateX(-50%) rotate(90deg)',
+  north: {
+    left: `${50 - TRAFFIC_EDGE_MARGIN}%`,
+    top: `${TRAFFIC_LANE_SHIFT}%`,
+    transform: 'translate(-50%, -50%)',
   },
-  north: { left: '40%', top: '0', transform: 'translateX(-50%)' },
-  south: { left: '60%', top: '100%', transform: 'translateX(-50%)' },
-  west: { left: '0', top: '60%', transform: 'translateX(-50%) rotate(90deg)' },
+  south: {
+    left: `${50 + TRAFFIC_EDGE_MARGIN}%`,
+    top: `${100 - TRAFFIC_LANE_SHIFT}%`,
+    transform: 'translate(-50%, -50%)',
+  },
+  west: {
+    left: `${TRAFFIC_LANE_SHIFT}%`,
+    top: `${50 + TRAFFIC_EDGE_MARGIN}%`,
+    transform: 'translate(-50%, -50%) rotate(90deg)',
+  },
+  east: {
+    left: `${100 - TRAFFIC_LANE_SHIFT}%`,
+    top: `${50 - TRAFFIC_EDGE_MARGIN}%`,
+    transform: 'translate(-50%, -50%) rotate(90deg)',
+  },
 };
 
 export const TRAFFIC_LIGHT_STYLE = {
@@ -18,29 +35,53 @@ export const TRAFFIC_LIGHT_STYLE = {
 };
 
 export const PEDESTRIAN_POSITION_STYLES = {
-  east: {
+  north: {
     left: {
-      left: '90%',
-      top: '20%',
-      transform: 'translateX(-50%) rotate(90deg)',
+      left: `${PEDESTRIAN_EDGE_MARGIN}%`,
+      top: `${PEDESTRIAN_SIDE_MARGIN}%`,
+      transform: 'translate(-50%, -50%)',
     },
     right: {
-      left: '90%',
-      top: '80%',
-      transform: 'translateX(-50%) rotate(90deg)',
+      left: `${100 - PEDESTRIAN_EDGE_MARGIN}%`,
+      top: `${PEDESTRIAN_SIDE_MARGIN}%`,
+      transform: 'translate(-50%, -50%)',
     },
   },
-  north: {
-    left: { left: '20%', top: '10%', transform: 'translateX(-50%)' },
-    right: { left: '80%', top: '10%', transform: 'translateX(-50%)' },
-  },
   south: {
-    left: { left: '20%', top: '90%', transform: 'translateX(-50%)' },
-    right: { left: '80%', top: '90%', transform: 'translateX(-50%)' },
+    left: {
+      left: `${PEDESTRIAN_EDGE_MARGIN}%`,
+      top: `${100 - PEDESTRIAN_SIDE_MARGIN}%`,
+      transform: 'translate(-50%, -50%)',
+    },
+    right: {
+      left: `${100 - PEDESTRIAN_EDGE_MARGIN}%`,
+      top: `${100 - PEDESTRIAN_SIDE_MARGIN}%`,
+      transform: 'translate(-50%, -50%)',
+    },
   },
   west: {
-    left: { left: '10%', top: '20%', transform: 'translateX(-50%) rotate(90deg)' },
-    right: { left: '10%', top: '80%', transform: 'translateX(-50%) rotate(90deg)' },
+    left: {
+      left: `${PEDESTRIAN_SIDE_MARGIN}%`,
+      top: `${PEDESTRIAN_EDGE_MARGIN}%`,
+      transform: 'translate(-50%, -50%) rotate(90deg)',
+    },
+    right: {
+      left: `${PEDESTRIAN_SIDE_MARGIN}%`,
+      top: `${100 - PEDESTRIAN_EDGE_MARGIN}%`,
+      transform: 'translate(-50%, -50%) rotate(90deg)',
+    },
+  },
+  east: {
+    left: {
+      left: `${100 - PEDESTRIAN_SIDE_MARGIN}%`,
+      top: `${PEDESTRIAN_EDGE_MARGIN}%`,
+      transform: 'translate(-50%, -50%) rotate(90deg)',
+    },
+    right: {
+      left: `${100 - PEDESTRIAN_SIDE_MARGIN}%`,
+      top: `${100 - PEDESTRIAN_EDGE_MARGIN}%`,
+      transform: 'translate(-50%, -50%) rotate(90deg)',
+    },
   },
 };
 
@@ -55,4 +96,7 @@ export const CROSSING_STYLE = {
   width: '700px',
   height: '700px',
   position: 'relative',
+  backgroundImage: `
+  linear-gradient(to right, transparent 30%, #e0e0e0 30% 70%, transparent 70%),
+  linear-gradient(to bottom, transparent 30%, #e0e0e0 30% 70%, transparent 70%)`,
 };
