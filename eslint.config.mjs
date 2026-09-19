@@ -38,6 +38,7 @@ export default defineConfig([
     },
     rules: {
       'import-x/extensions': 'off',
+      'class-methods-use-this': 'off',
     },
   },
 ]);

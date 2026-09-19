@@ -1,9 +1,17 @@
 import { LAMP_OFF_COLOR, LAMP_STYLE } from '../constants.js';
 
 export default class Lamp {
+  static STATE = {
+    OFF: 'off',
+    ON: 'on',
+    BLINKING: 'blinking',
+  };
+
   #color;
 
   #element;
+
+  #state = Lamp.STATE.OFF;
 
   constructor(color) {
     this.#color = color;
@@ -18,17 +26,35 @@ export default class Lamp {
     return this.#element;
   }
 
+  get state() {
+    return this.#state;
+  }
+
   static createLampElement() {
     const element = document.createElement('div');
     Object.assign(element.style, LAMP_STYLE);
     return element;
   }
 
-  on() {
-    this.#element.style.backgroundColor = this.#color;
-  }
+  changeState(state) {
+    if (this.state === state) {
+      return;
+    }
+    this.#state = state;
 
-  off() {
-    this.#element.style.backgroundColor = LAMP_OFF_COLOR;
+    this.element.getAnimations().forEach((animation) => animation.cancel());
+
+    this.#element.style.backgroundColor = state === Lamp.STATE.ON ? this.#color : LAMP_OFF_COLOR;
+
+    if (state === Lamp.STATE.BLINKING) {
+      this.#element.animate([
+        { backgroundColor: this.#color, offset: 0 },
+        { backgroundColor: this.#color, offset: 0.5 },
+        { backgroundColor: LAMP_OFF_COLOR, offset: 0.5 },
+        { backgroundColor: LAMP_OFF_COLOR, offset: 1 }], {
+        duration: 500,
+        iterations: Infinity,
+      });
+    }
   }
 }

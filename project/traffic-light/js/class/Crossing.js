@@ -1,47 +1,58 @@
+import PedestrianLight from './PedestrianLight.js';
 import TrafficLight from './TrafficLight.js';
 import { CROSSING_STYLE } from '../constants.js';
 
 export default class Crossing {
-  #north;
+  static DIRECTION = ['north', 'south', 'west', 'east'];
 
-  #south;
-
-  #west;
-
-  #east;
+  #sides = {};
 
   constructor(shape) {
-    this.#north = shape.north ? new TrafficLight('north') : undefined;
-    this.#south = shape.south ? new TrafficLight('south') : undefined;
-    this.#west = shape.west ? new TrafficLight('west') : undefined;
-    this.#east = shape.east ? new TrafficLight('east') : undefined;
+    Crossing.DIRECTION.filter((direction) => shape[direction]).forEach((direction) => {
+      this.#sides[direction] = Crossing.createSideLights(direction);
+    });
 
     document
       .getElementById('crossing')
       .append(
-        ...[
-          this.#north.container,
-          this.#south.container,
-          this.#west.container,
-          this.#east.container,
-        ],
-
+        ...Object.values(this.#sides)
+          .map((side) => ([side.traffic, ...side.pedestrians]))
+          .flat()
+          .map((light) => (light.container)),
       );
     Object.assign(document
       .getElementById('crossing').style, CROSSING_STYLE);
 
-    this.#north.addEventListener('finish', () => this.startEastWest());
-    this.#east.addEventListener('finish', () => this.startNorthSouth());
+    this.#sides.north.traffic.addEventListener('finish', () => this.startEastWest());
+    this.#sides.east.traffic.addEventListener('finish', () => this.startNorthSouth());
+  }
+
+  static createSideLights(direction) {
+    return {
+      traffic: new TrafficLight(direction),
+      pedestrians: [
+        new PedestrianLight(direction, 'right'),
+        new PedestrianLight(direction, 'left'),
+      ],
+    };
   }
 
   startNorthSouth() {
-    this.#south.start();
-    this.#north.start();
+    ['north', 'south'].forEach((direction) => {
+      this.#sides[direction].traffic.start();
+    });
+    ['west', 'east'].forEach((direction) => {
+      this.#sides[direction].pedestrians.forEach((light) => light.start());
+    });
   }
 
   startEastWest() {
-    this.#west.start();
-    this.#east.start();
+    ['west', 'east'].forEach((direction) => {
+      this.#sides[direction].traffic.start();
+    });
+    ['north', 'south'].forEach((direction) => {
+      this.#sides[direction].pedestrians.forEach((light) => light.start());
+    });
   }
 
   start() {
