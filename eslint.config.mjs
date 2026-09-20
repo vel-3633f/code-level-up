@@ -43,6 +43,6 @@ export default defineConfig([
     },
     settings: {
       'import-x/resolver-next': [createNodeResolver()],
-    }
+    },
   },
 ]);
