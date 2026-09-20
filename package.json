@@ -29,6 +29,7 @@
     "globals": "^17.9.0",
     "husky": "^9.1.7",
     "jsdom": "^29.1.1",
+    "jsdom-testing-mocks": "^1.16.0",
     "vitest": "^4.1.10"
   }
 }

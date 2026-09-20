@@ -4,6 +4,7 @@ import { includeIgnoreFile } from '@eslint/compat';
 import js from '@eslint/js';
 import { defineConfig } from 'eslint/config';
 import { configs, plugins, rules } from 'eslint-config-airbnb-extended';
+import { createNodeResolver } from 'eslint-plugin-import-x';
 import globals from 'globals';
 
 const gitignorePath = path.resolve('.', '.gitignore');
@@ -40,5 +41,8 @@ export default defineConfig([
       'import-x/extensions': 'off',
       'class-methods-use-this': 'off',
     },
+    settings: {
+      'import-x/resolver-next': [createNodeResolver()],
+    }
   },
 ]);
